@@ -1,0 +1,133 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOCPEh1oUNWinuo2XBjFZNQ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/deletion.py%20cir\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.next = None\n",
+        "\n",
+        "class CreateList:\n",
+        "    def __init__(self):\n",
+        "        self.head = None\n",
+        "        self.tail = None\n",
+        "\n",
+        "    def add(self, data):\n",
+        "        newNode = Node(data)\n",
+        "        if self.head is None:\n",
+        "            self.head = newNode\n",
+        "            self.tail = newNode\n",
+        "            newNode.next = self.head # Self-loop for single node\n",
+        "        else:\n",
+        "            self.tail.next = newNode\n",
+        "            self.tail = newNode\n",
+        "            self.tail.next = self.head # Maintain circularity\n",
+        "\n",
+        "    def deleteEnd(self):\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty. Cannot delete.\")\n",
+        "            return\n",
+        "\n",
+        "        if self.head == self.tail: # Only one node in the list\n",
+        "            self.head = None\n",
+        "            self.tail = None\n",
+        "            return\n",
+        "\n",
+        "        current = self.head\n",
+        "        # Traverse to the node before the tail\n",
+        "        while current.next != self.tail:\n",
+        "            current = current.next\n",
+        "\n",
+        "        # 'current' is now the new tail\n",
+        "        self.tail = current\n",
+        "        self.tail.next = self.head # Maintain circularity\n",
+        "\n",
+        "    def display(self):\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "\n",
+        "        current = self.head\n",
+        "        print(\"Nodes of the circular linked list: \", end=\"\")\n",
+        "        while True:\n",
+        "            print(current.data, end=\" \")\n",
+        "            current = current.next\n",
+        "            if current == self.head: # Stop when we loop back to the head\n",
+        "                break\n",
+        "        print() # Newline at the end\n",
+        "\n",
+        "\n",
+        "if __name__ == '__main__':\n",
+        "    cl = CreateList()\n",
+        "    cl.add(1)\n",
+        "    cl.add(2)\n",
+        "    cl.add(3)\n",
+        "    cl.add(4)\n",
+        "\n",
+        "    print(\"Original List:\")\n",
+        "    cl.display()\n",
+        "\n",
+        "    print(\"\\nDeleting elements one by one:\")\n",
+        "    while cl.head is not None:\n",
+        "        cl.deleteEnd()\n",
+        "        print(\"Updated List:\")\n",
+        "        cl.display()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "86FHJF8odGee",
+        "outputId": "12154479-b6f6-48c3-b0c5-977883a79dc0"
+      },
+      "execution_count": 7,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original List:\n",
+            "Nodes of the circular linked list: 1 2 3 4 \n",
+            "\n",
+            "Deleting elements one by one:\n",
+            "Updated List:\n",
+            "Nodes of the circular linked list: 1 2 3 \n",
+            "Updated List:\n",
+            "Nodes of the circular linked list: 1 2 \n",
+            "Updated List:\n",
+            "Nodes of the circular linked list: 1 \n",
+            "Updated List:\n",
+            "List is empty\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
