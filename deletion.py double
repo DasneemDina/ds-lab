@@ -1,0 +1,136 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOX/Ec8BzSRKvTq3xkh/P99",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/deletion.py%20double\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.previous = None\n",
+        "        self.next = None\n",
+        "\n",
+        "class DeleteStart:\n",
+        "    def __init__(self):\n",
+        "        self.head = None\n",
+        "        self.tail = None\n",
+        "\n",
+        "    def addNode(self, data):\n",
+        "        newNode = Node(data)\n",
+        "        if self.head is None:\n",
+        "            self.head = newNode\n",
+        "            self.tail = newNode\n",
+        "            self.head.previous = None\n",
+        "            self.tail.next = None\n",
+        "        else:\n",
+        "            self.tail.next = newNode\n",
+        "            newNode.previous = self.tail\n",
+        "            self.tail = newNode\n",
+        "            self.tail.next = None\n",
+        "\n",
+        "    def deleteFromStart(self):\n",
+        "        if self.head is None:\n",
+        "            return\n",
+        "        else:\n",
+        "            if self.head != self.tail:\n",
+        "                self.head = self.head.next\n",
+        "                self.head.previous = None\n",
+        "            else:\n",
+        "                self.head = None\n",
+        "                self.tail = None\n",
+        "\n",
+        "    def display(self):\n",
+        "        current = self.head\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "        while current is not None:\n",
+        "            print(current.data)\n",
+        "            current = current.next\n",
+        "        print()\n",
+        "\n",
+        "dList = DeleteStart()\n",
+        "dList.addNode(1)\n",
+        "dList.addNode(2)\n",
+        "dList.addNode(3)\n",
+        "dList.addNode(4)\n",
+        "dList.addNode(5)\n",
+        "print(\"Original List: \")\n",
+        "dList.display()\n",
+        "\n",
+        "while dList.head is not None:\n",
+        "    dList.deleteFromStart()\n",
+        "    print(\"Updated List: \")\n",
+        "    dList.display()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "gx63-N1Rgh7l",
+        "outputId": "c29e1705-c447-4f05-a2e2-a12c45ff688a"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Original List: \n",
+            "1\n",
+            "2\n",
+            "3\n",
+            "4\n",
+            "5\n",
+            "\n",
+            "Updated List: \n",
+            "2\n",
+            "3\n",
+            "4\n",
+            "5\n",
+            "\n",
+            "Updated List: \n",
+            "3\n",
+            "4\n",
+            "5\n",
+            "\n",
+            "Updated List: \n",
+            "4\n",
+            "5\n",
+            "\n",
+            "Updated List: \n",
+            "5\n",
+            "\n",
+            "Updated List: \n",
+            "List is empty\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
