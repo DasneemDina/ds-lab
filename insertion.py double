@@ -1,0 +1,122 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMFCJ1b4eD5MYv6MfANd33A",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/insertion.py%20double\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.previous = None\n",
+        "        self.next = None\n",
+        "\n",
+        "class InsertStart:\n",
+        "    def __init__(self):\n",
+        "        self.head = None\n",
+        "        self.tail = None\n",
+        "\n",
+        "    def addAtStart(self, data):\n",
+        "        newNode = Node(data)\n",
+        "        if self.head is None:\n",
+        "            self.head = newNode\n",
+        "            self.tail = newNode\n",
+        "            self.head.previous = None\n",
+        "            self.tail.next = None\n",
+        "        else:\n",
+        "            self.head.previous = newNode\n",
+        "            newNode.next = self.head\n",
+        "            newNode.previous = None\n",
+        "            self.head = newNode\n",
+        "\n",
+        "    def display(self):\n",
+        "        current = self.head\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "        print(\"Adding a node to the start of the list: \")\n",
+        "        while current is not None:\n",
+        "            print(current.data)\n",
+        "            current = current.next\n",
+        "        print()\n",
+        "\n",
+        "dList = InsertStart()\n",
+        "dList.addAtStart(1)\n",
+        "dList.display()\n",
+        "dList.addAtStart(2)\n",
+        "dList.display()\n",
+        "dList.addAtStart(3)\n",
+        "dList.display()\n",
+        "dList.addAtStart(4)\n",
+        "dList.display()\n",
+        "dList.addAtStart(5)\n",
+        "dList.display()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "BrNF8QTBgGPM",
+        "outputId": "ecb5817b-8f30-428d-fb91-bed49e848eaf"
+      },
+      "execution_count": 13,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Adding a node to the start of the list: \n",
+            "1\n",
+            "\n",
+            "Adding a node to the start of the list: \n",
+            "2\n",
+            "1\n",
+            "\n",
+            "Adding a node to the start of the list: \n",
+            "3\n",
+            "2\n",
+            "1\n",
+            "\n",
+            "Adding a node to the start of the list: \n",
+            "4\n",
+            "3\n",
+            "2\n",
+            "1\n",
+            "\n",
+            "Adding a node to the start of the list: \n",
+            "5\n",
+            "4\n",
+            "3\n",
+            "2\n",
+            "1\n",
+            "\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
