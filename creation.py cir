@@ -1,0 +1,76 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMoiotwBr4SzQaM5W+KsdCU",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/creation.py%20cir\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 3,
+      "metadata": {
+        "id": "u8rp67cxaTLB"
+      },
+      "outputs": [],
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.next = None\n",
+        "\n",
+        "class CreateList:\n",
+        "    def __init__(self):\n",
+        "        # Initialize head and tail with a dummy node or handle an empty list state differently\n",
+        "        # For a circular linked list, an empty list typically means head and tail are None\n",
+        "        self.head = None\n",
+        "        self.tail = None\n",
+        "\n",
+        "    def add(self, data):\n",
+        "        newNode = Node(data)\n",
+        "        if self.head is None:\n",
+        "            self.head = newNode\n",
+        "            self.tail = newNode\n",
+        "            newNode.next = self.head  # Point to itself for a single-node circular list\n",
+        "        else:\n",
+        "            self.tail.next = newNode\n",
+        "            self.tail = newNode\n",
+        "            self.tail.next = self.head # Maintain circularity\n",
+        "\n",
+        "    def display(self):\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "\n",
+        "        current = self.head\n",
+        "        print(\"Nodes of the circular linked list: \", end=\"\")\n",
+        "        while True:\n",
+        "            print(current.data, end=\" \")\n",
+        "            current = current.next\n",
+        "            if current == self.head:\n",
+        "                break\n",
+        "        print()"
+      ]
+    }
+  ]
+}
