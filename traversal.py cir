@@ -1,0 +1,99 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyMrMwAUF5H/1XJNk5RIP9pc",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/traversal.py%20cir\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.next = None\n",
+        "\n",
+        "class CircularLinkedList:\n",
+        "    def __init__(self):\n",
+        "        self.head = None\n",
+        "\n",
+        "    def push(self, data):\n",
+        "        ptr1 = Node(data)\n",
+        "        ptr1.next = self.head\n",
+        "\n",
+        "        if self.head is not None:\n",
+        "            temp = self.head\n",
+        "            while temp.next != self.head:\n",
+        "                temp = temp.next\n",
+        "            temp.next = ptr1\n",
+        "        else:\n",
+        "            # If list was empty, new node points to itself\n",
+        "            ptr1.next = ptr1\n",
+        "\n",
+        "        self.head = ptr1\n",
+        "\n",
+        "    def printList(self):\n",
+        "        temp = self.head\n",
+        "\n",
+        "        if self.head is None:\n",
+        "            print(\"List is empty\")\n",
+        "            return\n",
+        "\n",
+        "        while True:\n",
+        "            print(f\"{temp.data}\", end=\" \")\n",
+        "            temp = temp.next\n",
+        "            if temp == self.head:\n",
+        "                break\n",
+        "        print()\n",
+        "\n",
+        "\n",
+        "cllist = CircularLinkedList()\n",
+        "cllist.push(12)\n",
+        "cllist.push(56)\n",
+        "cllist.push(2)\n",
+        "cllist.push(11)\n",
+        "print(\"Contents of circular Linked List\")\n",
+        "cllist.printList()\n"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "n-kFxN8bekg1",
+        "outputId": "baa221bc-e36f-4358-fa61-acc9e8f92294"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Contents of circular Linked List\n",
+            "11 2 56 12 \n"
+          ]
+        }
+      ]
+    }
+  ]
+}
