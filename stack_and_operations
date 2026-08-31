@@ -1,0 +1,134 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "toc_visible": true,
+      "authorship_tag": "ABX9TyNMirxAyHUaIkmf0SitQgG1",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/stack_and_operations\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Node:\n",
+        "    def __init__(self,data):\n",
+        "        self.data = data\n",
+        "        self.next = None\n",
+        "\n",
+        "class Stack:\n",
+        "    def __init__(self):\n",
+        "        self.head = None\n",
+        "\n",
+        "    def isempty(self):\n",
+        "        if self.head == None:\n",
+        "            return True\n",
+        "        else:\n",
+        "            return False\n",
+        "\n",
+        "    def push(self,data):\n",
+        "        if self.head == None:\n",
+        "            self.head=Node(data)\n",
+        "        else:\n",
+        "            newnode = Node(data)\n",
+        "            newnode.next = self.head\n",
+        "            self.head = newnode\n",
+        "\n",
+        "    def pop(self):\n",
+        "        if self.isempty():\n",
+        "            return None\n",
+        "        else:\n",
+        "            poppednode = self.head\n",
+        "            self.head = self.head.next\n",
+        "            poppednode.next = None\n",
+        "            return poppednode.data\n",
+        "\n",
+        "    def peek(self):\n",
+        "        if self.isempty():\n",
+        "            return None\n",
+        "        else:\n",
+        "            return self.head.data\n",
+        "\n",
+        "    def display(self):\n",
+        "        iternode = self.head\n",
+        "        if self.isempty():\n",
+        "            print(\"Stack Underflow\")\n",
+        "        else:\n",
+        "            while(iternode != None):\n",
+        "                print(iternode.data,\"->\",end = \" \")\n",
+        "                iternode = iternode.next\n",
+        "            print() # Add a newline at the end of display for better formatting\n",
+        "\n",
+        "\n",
+        "MyStack = Stack()\n",
+        "\n",
+        "\n",
+        "MyStack.push(11)\n",
+        "MyStack.push(22)\n",
+        "MyStack.push(33)\n",
+        "MyStack.push(44)\n",
+        "\n",
+        "MyStack.display()\n",
+        "\n",
+        "\n",
+        "print(\"\\nTop element is \",MyStack.peek())\n",
+        "\n",
+        "\n",
+        "MyStack.pop()\n",
+        "MyStack.pop()\n",
+        "\n",
+        "MyStack.display()\n",
+        "\n",
+        "print(\"\\nTop element is \", MyStack.peek())"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "MO1upPG4TIO4",
+        "outputId": "6674f26f-6a6e-4d5b-9777-f01fb075cd92"
+      },
+      "execution_count": 9,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "44 -> 33 -> 22 -> 11 -> \n",
+            "\n",
+            "Top element is  44\n",
+            "22 -> 11 -> \n",
+            "\n",
+            "Top element is  22\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "EczE28XsTURo"
+      }
+    }
+  ]
+}
