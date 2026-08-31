@@ -1,0 +1,136 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOKgPRrSqxEJrlKPmGOXO8w",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/5.1)infix%20to%20postfix\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "source": [],
+      "metadata": {
+        "id": "EczE28XsTURo"
+      }
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class Conversion:\n",
+        "    def __init__(self, capacity):\n",
+        "        self.top = -1\n",
+        "        self.capacity = capacity\n",
+        "        self.array = []\n",
+        "        self.output = []\n",
+        "        self.precedence = {'+':1, '-':1, '*':2, '/':2, '^':3}\n",
+        "\n",
+        "    def isEmpty(self):\n",
+        "        return True if self.top == -1 else False\n",
+        "\n",
+        "    def peek(self):\n",
+        "        return self.array[-1]\n",
+        "\n",
+        "    def pop(self):\n",
+        "        if not self.isEmpty():\n",
+        "            self.top -= 1\n",
+        "            return self.array.pop()\n",
+        "        else:\n",
+        "            return \"$\"\n",
+        "\n",
+        "    def push(self, op):\n",
+        "        self.top += 1\n",
+        "        self.array.append(op)\n",
+        "\n",
+        "    def isOperand(self, ch):\n",
+        "        return ch.isalpha()\n",
+        "\n",
+        "    def notGreater(self, i):\n",
+        "        try:\n",
+        "            a = self.precedence[i]\n",
+        "            b = self.precedence[self.peek()]\n",
+        "            return True if a <= b else False\n",
+        "        except KeyError:\n",
+        "            return False\n",
+        "\n",
+        "    def infixToPostfix(self, exp):\n",
+        "        for i in exp:\n",
+        "            if self.isOperand(i):\n",
+        "                self.output.append(i)\n",
+        "\n",
+        "            elif i == '(':\n",
+        "                self.push(i)\n",
+        "\n",
+        "            elif i == ')':\n",
+        "                while( (not self.isEmpty()) and self.peek() != '('):\n",
+        "                    a = self.pop()\n",
+        "                    self.output.append(a)\n",
+        "\n",
+        "                # This 'if' block seems incomplete and problematic based on standard infix to postfix conversion logic.\n",
+        "                # The structure `if (not self.isEmpty() and self.peek() != '('): else: return -1`\n",
+        "                # without a body for 'if' and an early exit for 'else' is likely an error.\n",
+        "                # For now, I'm commenting it out as it would likely cause further issues or is logically misplaced.\n",
+        "                # if (not self.isEmpty() and self.peek() != '('):\n",
+        "                # else:\n",
+        "                #     return -1\n",
+        "\n",
+        "                # Pop '('\n",
+        "                if not self.isEmpty() and self.peek() == '(': # Ensure there's an opening parenthesis to pop\n",
+        "                    self.pop()\n",
+        "                # else: # If no matching '(', then expression is invalid. This would be a good place to raise an error.\n",
+        "                #     raise ValueError(\"Mismatched parentheses\")\n",
+        "\n",
+        "            else:\n",
+        "                while(not self.isEmpty() and self.notGreater(i)):\n",
+        "                    self.output.append(self.pop())\n",
+        "                self.push(i)\n",
+        "\n",
+        "        while not self.isEmpty():\n",
+        "            self.output.append(self.pop())\n",
+        "\n",
+        "        print(\"\".join(self.output))\n",
+        "\n",
+        "\n",
+        "exp = \"a+b*(c^d-e)^(f+g*h)-i\"\n",
+        "obj = Conversion(len(exp))\n",
+        "obj.infixToPostfix(exp)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "_fAFQw3XTv80",
+        "outputId": "a9ff6ded-b653-4ed2-bb52-bdb8b7668391"
+      },
+      "execution_count": 11,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "abcd^e-fgh*+^*+i-\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
