@@ -1,0 +1,90 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyOp1l0GDthQIaLu+ATsJbdZ",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/7)BST.no%20of%20nodes\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "class newNode:\n",
+        "    def __init__(self, data):\n",
+        "        self.data = data\n",
+        "        self.left = None\n",
+        "        self.right = None\n",
+        "\n",
+        "def getCount(root, low, high):\n",
+        "    if root is None:\n",
+        "        return 0\n",
+        "\n",
+        "    # If current node is in range, then include it and count nodes in subtrees\n",
+        "    if low <= root.data <= high:\n",
+        "        return (1 + getCount(root.left, low, high) +\n",
+        "                getCount(root.right, low, high))\n",
+        "\n",
+        "    # If current node is smaller than low, then all nodes in left subtree will be smaller,\n",
+        "    # so ignore left subtree and count nodes in right subtree\n",
+        "    elif root.data < low:\n",
+        "        return getCount(root.right, low, high)\n",
+        "\n",
+        "    # If current node is greater than high, then all nodes in right subtree will be greater,\n",
+        "    # so ignore right subtree and count nodes in left subtree\n",
+        "    else:\n",
+        "        return getCount(root.left, low, high)\n",
+        "\n",
+        "\n",
+        "if __name__ == '__main__':\n",
+        "    root = newNode(10)\n",
+        "    root.left = newNode(5)\n",
+        "    root.right = newNode(50)\n",
+        "    root.left.left = newNode(1)\n",
+        "    root.right.left = newNode(40)\n",
+        "    root.right.right = newNode(100)\n",
+        "\n",
+        "    l = 5\n",
+        "    h = 45\n",
+        "\n",
+        "    print(\"Count of nodes between [\", l, \", \", h, \"] is \", getCount(root, l, h))"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "N00VH_xJ4INt",
+        "outputId": "fa6d20b8-c389-4d85-da59-dc2702b4fbec"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Count of nodes between [ 5 ,  45 ] is  3\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
