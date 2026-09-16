@@ -1,0 +1,80 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP7lkLjapO3fExocNPPceWC",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/7)BST.Traversal\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "INT_MIN = -2**32\n",
+        "\n",
+        "def canRepresentBST(pre):\n",
+        "    s = []\n",
+        "    root = INT_MIN\n",
+        "    for value in pre:\n",
+        "        # If we find a node whose value is smaller than the current lower bound (root),\n",
+        "        # then it's not a valid BST preorder traversal.\n",
+        "        if value < root:\n",
+        "            return False\n",
+        "\n",
+        "        # While the stack is not empty and the top of the stack is less than the current value,\n",
+        "        # pop elements from the stack. The last popped element becomes the new lower bound (root).\n",
+        "        # This handles the transition from left subtree to right subtree.\n",
+        "        while len(s) > 0 and s[-1] < value:\n",
+        "            root = s.pop()\n",
+        "\n",
+        "        # Push the current value onto the stack\n",
+        "        s.append(value)\n",
+        "\n",
+        "    return True\n",
+        "\n",
+        "\n",
+        "pre1 = [40, 30, 35, 80, 100]\n",
+        "print(\"true\" if canRepresentBST(pre1) == True else \"false\")\n",
+        "pre2 = [40, 30, 35, 20, 80, 100]\n",
+        "print(\"true\" if canRepresentBST(pre2) == True else \"false\")"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ic8MaDh63TBv",
+        "outputId": "5d5b8451-9291-40d0-bf1a-15336e4210f1"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "true\n",
+            "false\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
