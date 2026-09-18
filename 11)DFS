@@ -4,7 +4,7 @@
   "metadata": {
     "colab": {
       "provenance": [],
-      "authorship_tag": "ABX9TyPLbgV03b+bU4ykNQtrgPM8",
+      "authorship_tag": "ABX9TyOV/koHxrzAKsqcD2uE7t++",
       "include_colab_link": true
     },
     "kernelspec": {
@@ -39,16 +39,21 @@
         "    def addEdge(self, u, v):\n",
         "        self.graph[u].append(v)\n",
         "\n",
-        "    def DFSUtil(self, v, visited):\n",
-        "        visited[v] = True\n",
-        "        print(v, end = ' ')\n",
-        "        for i in self.graph[v]:\n",
-        "            if visited[i] == False:\n",
-        "                self.DFSUtil(i, visited)\n",
-        "\n",
-        "    def DFS(self, v):\n",
+        "    def BFS(self, s):\n",
         "        visited = [False] * (len(self.graph))\n",
-        "        self.DFSUtil(v, visited)\n",
+        "        queue = []\n",
+        "\n",
+        "        queue.append(s)\n",
+        "        visited[s] = True\n",
+        "\n",
+        "        while queue:\n",
+        "            s = queue.pop(0)\n",
+        "            print (s, end = \" \")\n",
+        "\n",
+        "            for i in self.graph[s]:\n",
+        "                if visited[i] == False:\n",
+        "                    queue.append(i)\n",
+        "                    visited[i] = True\n",
         "\n",
         "g = Graph()\n",
         "g.addEdge(0, 1)\n",
@@ -58,24 +63,25 @@
         "g.addEdge(2, 3)\n",
         "g.addEdge(3, 3)\n",
         "\n",
-        "print(\"Following is DFS from (starting from vertex 2)\")\n",
-        "g.DFS(2)"
+        "print (\"Following is Breadth First Traversal \"\n",
+        "       \"(starting from vertex 2)\")\n",
+        "g.BFS(2)"
       ],
       "metadata": {
         "colab": {
           "base_uri": "https://localhost:8080/"
         },
-        "id": "jDO_7s8SFzDg",
-        "outputId": "d9a68d28-5c56-4f0f-fc1e-93c48d234ee7"
+        "id": "144NjE46Gh65",
+        "outputId": "aaffb328-f6e7-4846-ed9c-0540638b6eb7"
       },
-      "execution_count": 10,
+      "execution_count": 12,
       "outputs": [
         {
           "output_type": "stream",
           "name": "stdout",
           "text": [
-            "Following is DFS from (starting from vertex 2)\n",
-            "2 0 1 3 "
+            "Following is Breadth First Traversal (starting from vertex 2)\n",
+            "2 0 3 1 "
           ]
         }
       ]
