@@ -1,0 +1,84 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPLbgV03b+bU4ykNQtrgPM8",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/11)DFS\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from collections import defaultdict\n",
+        "\n",
+        "class Graph:\n",
+        "\n",
+        "    def __init__(self):\n",
+        "        self.graph = defaultdict(list)\n",
+        "\n",
+        "    def addEdge(self, u, v):\n",
+        "        self.graph[u].append(v)\n",
+        "\n",
+        "    def DFSUtil(self, v, visited):\n",
+        "        visited[v] = True\n",
+        "        print(v, end = ' ')\n",
+        "        for i in self.graph[v]:\n",
+        "            if visited[i] == False:\n",
+        "                self.DFSUtil(i, visited)\n",
+        "\n",
+        "    def DFS(self, v):\n",
+        "        visited = [False] * (len(self.graph))\n",
+        "        self.DFSUtil(v, visited)\n",
+        "\n",
+        "g = Graph()\n",
+        "g.addEdge(0, 1)\n",
+        "g.addEdge(0, 2)\n",
+        "g.addEdge(1, 2)\n",
+        "g.addEdge(2, 0)\n",
+        "g.addEdge(2, 3)\n",
+        "g.addEdge(3, 3)\n",
+        "\n",
+        "print(\"Following is DFS from (starting from vertex 2)\")\n",
+        "g.DFS(2)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "jDO_7s8SFzDg",
+        "outputId": "d9a68d28-5c56-4f0f-fc1e-93c48d234ee7"
+      },
+      "execution_count": 10,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Following is DFS from (starting from vertex 2)\n",
+            "2 0 1 3 "
+          ]
+        }
+      ]
+    }
+  ]
+}
