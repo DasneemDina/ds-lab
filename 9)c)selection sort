@@ -1,0 +1,72 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyP5SJ3dVNxw7YmKswt6v1ZH",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/9)c)selection%20sort\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "import sys\n",
+        "\n",
+        "A = [64, 25, 12, 22, 11]\n",
+        "\n",
+        "# Traverse through all array elements\n",
+        "for i in range(len(A)):\n",
+        "    # Find the minimum element in remaining unsorted array\n",
+        "    min_idx = i\n",
+        "    for j in range(i + 1, len(A)):\n",
+        "        if A[min_idx] > A[j]:\n",
+        "            min_idx = j\n",
+        "\n",
+        "    # Swap the found minimum element with the first element\n",
+        "    A[i], A[min_idx] = A[min_idx], A[i]\n",
+        "\n",
+        "print(\"Sorted array\")\n",
+        "for i in range(len(A)):\n",
+        "    print(\"%d\" % A[i], end=\" \")\n",
+        "print()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "ciOlY4ks_yXt",
+        "outputId": "54652ab2-47c9-4bea-e86b-7dc5e18b5b00"
+      },
+      "execution_count": 12,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Sorted array\n",
+            "11 12 22 25 64 \n"
+          ]
+        }
+      ]
+    }
+  ]
+}
