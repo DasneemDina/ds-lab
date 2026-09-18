@@ -1,0 +1,98 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyPzeVavo5xA37tdWN8mSQ2D",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/DasneemDina/ds-lab/blob/main/10)merge%20sort\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "def mergeSort(arr):\n",
+        "    if len(arr) > 1:\n",
+        "        mid = len(arr) // 2\n",
+        "        L = arr[:mid]\n",
+        "        R = arr[mid:]\n",
+        "\n",
+        "        mergeSort(L)\n",
+        "        mergeSort(R)\n",
+        "\n",
+        "        i = j = k = 0\n",
+        "\n",
+        "        while i < len(L) and j < len(R):\n",
+        "            if L[i] < R[j]:\n",
+        "                arr[k] = L[i]\n",
+        "                i += 1\n",
+        "            else:\n",
+        "                arr[k] = R[j]\n",
+        "                j += 1\n",
+        "            k += 1\n",
+        "\n",
+        "        while i < len(L):\n",
+        "            arr[k] = L[i]\n",
+        "            i += 1\n",
+        "            k += 1\n",
+        "\n",
+        "        while j < len(R):\n",
+        "            arr[k] = R[j]\n",
+        "            j += 1\n",
+        "            k += 1\n",
+        "\n",
+        "def printList(arr):\n",
+        "    for i in range(len(arr)):\n",
+        "        print(arr[i], end=\" \")\n",
+        "    print()\n",
+        "\n",
+        "\n",
+        "if __name__ == '__main__':\n",
+        "    arr = [12, 11, 13, 5, 6, 7]\n",
+        "    print(\"Given array is\", end=\"\\n\")\n",
+        "    printList(arr)\n",
+        "    mergeSort(arr)\n",
+        "    print(\"Sorted array is: \", end=\"\\n\")\n",
+        "    printList(arr)"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "360qanMDEzKX",
+        "outputId": "13e73d28-3f4b-4e37-8b2e-6d4bda1b80d6"
+      },
+      "execution_count": 8,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Given array is\n",
+            "12 11 13 5 6 7 \n",
+            "Sorted array is: \n",
+            "5 6 7 11 12 13 \n"
+          ]
+        }
+      ]
+    }
+  ]
+}
